@@ -1,7 +1,6 @@
 CC=clang
 CFLAGS=-Wall -Wextra -Werror -Wpedantic -fPIC
 PREFIX=/usr
-VERSION=1.0
 
 all: raf_test raf_test_shared libraf.so
 
@@ -18,7 +17,7 @@ libraf.so: raf.o
 	$(CC) $(CFLAGS) -c $<
 
 raf.pc: raf.pc.m4
-	m4 -D PREFIX=$(PREFIX) -D VERSION=$(VERSION) raf.pc.m4 > raf.pc
+	m4 -D PREFIX=$(PREFIX) raf.pc.m4 > raf.pc
 
 install: libraf.so raf.pc raf.h
 	install -m 755 libraf.so $(PREFIX)/lib/libraf.so
