@@ -1,7 +1,5 @@
 #include "raf.h"
 
-#include <stdio.h>
-
 // made with https://dom111.github.io/image-to-ansi/
 const char *raf_true_color_1
 	= "\x1b[48;2;0;0;0m          "
@@ -221,12 +219,16 @@ const char *raf_ansi_2
 	  "237m▄\x1b[0m\n";
 
 void raf(bool true_color) {
+	fraf(stdout, true_color);
+}
+
+void fraf(FILE *fp, bool true_color) {
 	if (true_color) {
-		printf("%s", raf_true_color_1);
-		printf("%s", raf_true_color_2);
-		printf("%s", raf_true_color_3);
+		fprintf(fp, "%s", raf_true_color_1);
+		fprintf(fp, "%s", raf_true_color_2);
+		fprintf(fp, "%s", raf_true_color_3);
 	} else {
-		printf("%s", raf_ansi_1);
-		printf("%s", raf_ansi_2);
+		fprintf(fp, "%s", raf_ansi_1);
+		fprintf(fp, "%s", raf_ansi_2);
 	}
 }
