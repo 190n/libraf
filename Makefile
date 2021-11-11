@@ -24,6 +24,7 @@ install: libraf.so raf.pc raf.h
 	install -m 755 libraf.so $(PREFIX)/lib/libraf.so
 	install -m 644 raf.pc $(PREFIX)/lib/pkgconfig/raf.pc
 	install -m 644 raf.h $(PREFIX)/include/raf.h
+	install -Dm 644 LICENSE $(PREFIX)/share/licenses/libraf/LICENSE
 
 uninstall:
 	rm -f $(PREFIX)/lib/libraf.so $(PREFIX)/lib/pkgconfig/raf.pc $(PREFIX)/include/raf.h
