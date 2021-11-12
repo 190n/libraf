@@ -2,7 +2,7 @@ CC=clang
 CFLAGS=-Wall -Wextra -Werror -Wpedantic -fPIC
 PREFIX=/usr
 
-all: raf_test raf_test_shared libraf.so
+all: raf_test raf_test_shared libraf.so raf.pc
 
 raf_test: raf.o raf_test.o
 	$(CC) raf.o raf_test.o -o raf_test
