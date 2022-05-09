@@ -19,4 +19,14 @@ void raf(bool true_color);
  */
 void fraf(FILE *fp, bool true_color);
 
+/**
+ * Write raf to any file descriptor
+ *
+ * fd:         file descriptor to write to
+ * true_color: whether to use true color (otherwise uses ANSI colors)
+ *
+ * Returns 0 if successful, or -1 (with errno set to the error) otherwise.
+ */
+int fdraf(int fd, bool true_color);
+
 #endif

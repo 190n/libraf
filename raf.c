@@ -1,3 +1,6 @@
+#include <string.h>
+#include <unistd.h>
+
 #include "raf.h"
 
 // made with https://dom111.github.io/image-to-ansi/
@@ -231,4 +234,22 @@ void fraf(FILE *fp, bool true_color) {
 		fprintf(fp, "%s", raf_ansi_1);
 		fprintf(fp, "%s", raf_ansi_2);
 	}
+}
+
+int fdraf(int fd, bool true_color) {
+	if (true_color) {
+		if (write(fd, raf_true_color_1, strlen(raf_true_color_1)) == -1)
+			return -1;
+		if (write(fd, raf_true_color_2, strlen(raf_true_color_2)) == -1)
+			return -1;
+		if (write(fd, raf_true_color_3, strlen(raf_true_color_3)) == -1)
+			return -1;
+	} else {
+		if (write(fd, raf_ansi_1, strlen(raf_ansi_1)) == -1)
+			return -1;
+		if (write(fd, raf_ansi_2, strlen(raf_ansi_2)) == -1)
+			return -1;
+	}
+
+	return 0;
 }
