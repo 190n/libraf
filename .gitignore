@@ -1,5 +1,6 @@
 *.o
 *.so
+*.dylib
 raf_test
 raf_test_shared
 raf.pc
