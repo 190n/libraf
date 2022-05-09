@@ -236,18 +236,32 @@ void fraf(FILE *fp, bool true_color) {
 	}
 }
 
+static ssize_t looped_write(int fd, const char *str) {
+	ssize_t len = strlen(str);
+	ssize_t offset = 0;
+	while (0 < len) {
+		ssize_t written = write(fd, str + offset, len);
+		if (written == -1)
+			return -1;
+		len -= written;
+		offset += written;
+	}
+
+	return offset;
+}
+
 int fdraf(int fd, bool true_color) {
 	if (true_color) {
-		if (write(fd, raf_true_color_1, strlen(raf_true_color_1)) == -1)
+		if (looped_write(fd, raf_true_color_1) == -1)
 			return -1;
-		if (write(fd, raf_true_color_2, strlen(raf_true_color_2)) == -1)
+		if (looped_write(fd, raf_true_color_2) == -1)
 			return -1;
-		if (write(fd, raf_true_color_3, strlen(raf_true_color_3)) == -1)
+		if (looped_write(fd, raf_true_color_3) == -1)
 			return -1;
 	} else {
-		if (write(fd, raf_ansi_1, strlen(raf_ansi_1)) == -1)
+		if (looped_write(fd, raf_ansi_1) == -1)
 			return -1;
-		if (write(fd, raf_ansi_2, strlen(raf_ansi_2)) == -1)
+		if (looped_write(fd, raf_ansi_2) == -1)
 			return -1;
 	}
 
